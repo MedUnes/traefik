@@ -1,0 +1,26 @@
+entryPoints:
+  web:
+    address: :80
+  websecured:
+    address: :443
+
+providers:
+  docker:
+    exposedByDefault: false
+    watch: true
+    network: traefik_net
+
+api:
+  dashboard: true
+  debug: true
+log:
+  level: DEBUG
+
+certificatesResolvers:
+  myresolver:
+    acme:
+      email: contact@medunes.net
+      storage: acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
